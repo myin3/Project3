@@ -38,6 +38,9 @@
       <button class="inline" onclick="dimensions()">Change Size</button>
     </div>
     <br>
+    <div>
+      <p id="gen">Generations: 0</p>
+    </div>
     <div class="grid"></div>
      <script src="project3.js"></script>
 

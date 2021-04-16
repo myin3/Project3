@@ -1,35 +1,37 @@
 var mouse = false;
-  var gridWidth = 600;
-  const grid = document.querySelector('.grid');
-  document.body.addEventListener('mousedown', function(){mouse = true});
-  document.body.addEventListener('mouseup', function(){mouse = false});
-  grid.style.width = gridWidth + "px";
-  grid.style.height = gridWidth + "px";
-  var height = grid.offsetHeight;
-  var width = grid.offsetWidth;
-  var interval;
-  var col = Math.floor(width / 10);
-  var row = Math.floor(height / 10);
-  var currentArray = [];
-  var nextArray = [];
-  for (var i = 0; i < row; i++) {
-    for (var j = 0; j < col; j++) {
-      var cell = document.createElement('div');
-      cell.setAttribute("class","space dead")
-      //cell.classList.add("space");
-      //cell.classList.add("dead");
-      cell.setAttribute('id', (i*row) + j);
-      cell.innerHTML = "";
-      cell.addEventListener('click', change);
-      cell.addEventListener('mouseover', function(){
-        if(mouse == true){
-          this.setAttribute("class","space live")
-        }
-      });
-      grid.appendChild(cell);
-      //currentArray.push(cell);
-    }
+var gridWidth = 600;
+const grid = document.querySelector('.grid');
+grid.addEventListener('mousedown', function(){mouse = true});
+document.body.addEventListener('mouseup', function(){mouse = false});
+grid.style.width = gridWidth + "px";
+grid.style.height = gridWidth + "px";
+var genID = document.getElementById('gen');
+var generation = 0;
+var height = grid.offsetHeight;
+var width = grid.offsetWidth;
+var interval;
+var col = Math.floor(width / 10);
+var row = Math.floor(height / 10);
+var currentArray = [];
+var nextArray = [];
+for (var i = 0; i < row; i++) {
+  for (var j = 0; j < col; j++) {
+    var cell = document.createElement('div');
+    cell.setAttribute("class","space dead")
+    //cell.classList.add("space");
+    //cell.classList.add("dead");
+    cell.setAttribute('id', (i*row) + j);
+    cell.innerHTML = "";
+    cell.addEventListener('click', change);
+    cell.addEventListener('mouseover', function(){
+      if(mouse == true){
+        this.setAttribute("class","space live")
+      }
+    });
+    grid.appendChild(cell);
+    //currentArray.push(cell);
   }
+}
 
 function checkStatus(){      
   for (var i = 0; i < row*col;/*currentArray.length;*/ i++) {
@@ -402,6 +404,8 @@ function start(){
     checkStatus();
     checkNeighbor();
     setNeighbor();
+    generation++;
+    genID.innerHTML = "Generation: " + generation;
   }, 100);
 }
    
@@ -412,6 +416,8 @@ function gen(num) {
     checkStatus();
     checkNeighbor();
     setNeighbor();
+    generation++;
+    genID.innerHTML = "Generation: " + generation;
     count++;
     if(count == num) {
       clearInterval(interval);
@@ -434,6 +440,9 @@ function dimensions(){
   row = Math.floor(height / 10);
   currentArray = [];
   nextArray = [];
+  clearInterval(interval);
+  generation = 0;
+  genID.innerHTML = "Generation: " + generation;
   for (var i = 0; i < row; i++) {
     for (var j = 0; j < col; j++) {
       var cell = document.createElement('div');
@@ -463,6 +472,9 @@ function reset(){
    document.getElementById(i).setAttribute("class", "space dead"); 
   }
   clearInterval(interval);
+  generation = 0;
+  genID.innerHTML = "Generation: " + generation;
+  
 }
    
 function change() {
