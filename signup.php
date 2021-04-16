@@ -50,15 +50,20 @@
     h3{
       color: #e4bad4;
     }
+    a {
+        position: relative;
+        right: -300px;
+    }
   </style>
 </head>
 <body>
     <div class="form-container">
     <h1 class="head">Create an Account</h1>
     <form name="Signup" action="signup-submit.php" method="POST">
-        Username: <input type="text" name="Username"> <br>
-        Password: <input type="password" name="Password"> <br>
-        <button class="button" type="submit" name="Submit" onclick="location='login.php'">Submit</button>
+        Username: <input type="text" name="Username" required> <br>
+        Password: <input type="password" name="Password" pattern="(?=.*[^A-Za-z0-9])(?=.*[a-z])(?=.*[A-Z]).{4,}" title="Must contain at least one number, one uppercase, one symbol, and at least 4 or more characters" required> <br>
+        <button class="button" type="submit" name="Submit">Submit</button>
+        <a href="login.php">Login Here</a>
     </form>
     <?php session_save_path("./");
     session_start();
