@@ -1,6 +1,7 @@
 <?php 
   session_save_path("./");
   session_start(); 
+  unset($_SESSION['auth']);
   if (!isset($_SESSION['logins'])) {
   	$_SESSION['logins'] = array('test' => '123','admin' => 'admin','user' => 'user');
   }

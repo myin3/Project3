@@ -7,6 +7,7 @@
         if (isset($_SESSION['logins'][$Username]) && ($_SESSION['logins'][$Username] == $Password)){
             $_SESSION['UserData']['Username'] = $_SESSION['logins'][$Username];
             $_SESSION['username'] = $Username;
+            $_SESSION['auth'] = true;
             header("location:project3.php");
             exit;
         } else {

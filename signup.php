@@ -81,6 +81,12 @@
             <li>Must Contain a symbol</li>
             <li>Must be at least 4 characters long</li>
         </ul>
+        <h3>Admin Accounts (for testing)</h3>
+        <ul>
+            <li>test/123</li>
+            <li>admin/admin</li>
+            <li>user/user</li>
+        </ul>
     </div>
 </body>
 </html>

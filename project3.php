@@ -1,3 +1,10 @@
+<?php 
+  session_save_path("./");
+  session_start(); 
+  if ($_SESSION['auth'] != true) {
+    header("location:signup.php");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
