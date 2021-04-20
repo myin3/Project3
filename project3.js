@@ -427,10 +427,14 @@ function gen(num) {
    
 function dimensions(){
   document.querySelectorAll('.space').forEach(e => e.remove());
-  gridWidth = prompt("Input a width multiple of 100 (board is min 100x100)");
+  gridWidth = prompt("Input a width multiple of 100px (board is min 100x100)\nRounded down to the lowest 100 multiple");
   const grid = document.querySelector('.grid');
   if(gridWidth < 100) {
     gridWidth = 100;
+  }
+  else if(gridWidth % 100 != 0){
+    let remainder = (gridWidth % 100)
+    gridWidth = gridWidth - remainder;
   }
   grid.style.width = gridWidth + "px";
   grid.style.height = gridWidth + "px";
